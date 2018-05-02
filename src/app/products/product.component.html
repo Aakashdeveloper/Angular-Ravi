@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Product List
+       {{title}}
     </div>
     <div class="panel-body">
         <div class="row">
@@ -18,12 +18,22 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th><button  class="btn btn-success">Show Image</button></th>
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Star Rating</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Ravi</td>
+                    <tr *ngFor="let product of products">
+                        <td></td>
+                        <td>{{product.productName}}</td>
+                        <td>{{product.productCode}}</td>
+                        <td>{{product.releaseDate}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.starRating}}</td>
                     </tr>
                 </tbody>
             </table>
