@@ -2,13 +2,17 @@ import {Component} from '@angular/core';
 
 @Component({
     selector:'prod-comp',
-    templateUrl:'./product.component.html'
+    templateUrl:'./product.component.html',
+    //styles:['thead{color:purple}','h3{color:green}']
+    styleUrls:['./product.component.css']
 })
 
 export class ProductComponent{
     title="@@@@@@@@@Product List";
     filterText="leaf"
     showImage=false;
+    imageWidth=50;
+    
     products:any[]=[
         {
             "productId": 1,

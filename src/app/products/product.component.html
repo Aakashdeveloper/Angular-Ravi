@@ -32,12 +32,15 @@
                     {{showImage}}
                     <tr *ngFor="let product of products">
                         <td>
-                            <img [src]="product.imageUrl" *ngIf="showImage"/>
+                            <img [style.width.px]="imageWidth" 
+                                [src]="product.imageUrl" *ngIf="showImage"/>
                         </td>
-                        <td>{{product.productName}}</td>
-                        <td>{{product.productCode}}</td>
+                        <td >{{product.productName | MyUpper:"lower"}}</td>
+                        <td>{{product.productCode  | MyUpper:"upper"}}</td>
                         <td>{{product.releaseDate}}</td>
-                        <td>{{product.price}}</td>
+                        <td [ngStyle]="{'background-color':product.price>30?'red':'green'}">
+                                {{product.price | currency:"GBP"}}
+                        </td>
                         <td>{{product.starRating}}</td>
                     </tr>
                 </tbody>
