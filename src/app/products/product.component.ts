@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { IProduct } from "./product.model";
 
 @Component({
     selector:'prod-comp',
@@ -9,11 +10,11 @@ import {Component} from '@angular/core';
 
 export class ProductComponent{
     title="@@@@@@@@@Product List";
-    filterText="leaf"
+    filterText;
     showImage=false;
     imageWidth=50;
     
-    products:any[]=[
+    products:IProduct[]=[
         {
             "productId": 1,
             "productName": "Leaf Rake",
@@ -21,7 +22,7 @@ export class ProductComponent{
             "releaseDate": "March 19, 2016",
             "description": "Leaf rake with 48-inch wooden handle.",
             "price": 19.95,
-            "starRating": 3.2,
+            "starRating": 3.5,
             "imageUrl": "https://image.ibb.co/f0hhZc/bp.jpg"
         },
         {

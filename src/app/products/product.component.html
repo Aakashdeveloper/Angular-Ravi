@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     {{showImage}}
-                    <tr *ngFor="let product of products">
+                    <tr *ngFor="let product of products | ProductFilter:filterText">
                         <td>
                             <img [style.width.px]="imageWidth" 
                                 [src]="product.imageUrl" *ngIf="showImage"/>
@@ -41,7 +41,11 @@
                         <td [ngStyle]="{'background-color':product.price>30?'red':'green'}">
                                 {{product.price | currency:"GBP"}}
                         </td>
-                        <td>{{product.starRating}}</td>
+                        <td>
+                            <star-comp [rating]="product.starRating">
+
+                            </star-comp>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from "./products/product.component";
 import { CarComponent } from "./car.component";
 import { ProductUpper } from "./products/product-upper.pipe";
+import { ProductFilterPipe } from "./products/product-filter.pipe";
+import { StarComponent } from "./shared/star.component";
 
 @NgModule({
     //Modules will come here
@@ -18,7 +20,10 @@ import { ProductUpper } from "./products/product-upper.pipe";
         AppComponent,
         CarComponent,
         ProductComponent,
-        ProductUpper
+        ProductUpper,
+        ProductFilterPipe,
+        StarComponent
+
     ],
     //First Component come here
     bootstrap:[
