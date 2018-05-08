@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IProduct } from "./product.model";
+import {ProductService} from './product.service'
 
 @Component({
     selector:'prod-comp',
@@ -8,37 +9,21 @@ import { IProduct } from "./product.model";
     styleUrls:['./product.component.css']
 })
 
-export class ProductComponent{
+export class ProductComponent implements OnInit{
     title="@@@@@@@@@Product List";
     filterText;
     showImage=false;
     imageWidth=50;
-    
-    products:IProduct[]=[
-        {
-            "productId": 1,
-            "productName": "Leaf Rake",
-            "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2016",
-            "description": "Leaf rake with 48-inch wooden handle.",
-            "price": 19.95,
-            "starRating": 3.5,
-            "imageUrl": "https://image.ibb.co/f0hhZc/bp.jpg"
-        },
-        {
-            "productId": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
-            "description": "15 gallon capacity rolling garden cart",
-            "price": 32.99,
-            "starRating": 4.2,
-            "imageUrl": "https://image.ibb.co/gC9PfH/dw.jpg"
-        }
-    ]
+    products:IProduct[]
+
+    constructor(private _productService:ProductService){}
 
     toggleImage():void{
         this.showImage = !this.showImage
+    }
+
+    ngOnInit(): void{
+        this.products = this._productService.getProducts()
     }
 }
 
