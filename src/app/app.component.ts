@@ -3,9 +3,19 @@ import {Component} from '@angular/core'
 @Component({
     selector:'app-comp',
     template:`<div>
-                <h1>This is Angular</h1>
-                <prod-comp></prod-comp>
-                <car-comp></car-comp>
+                <nav class="navbar navbar-inverse">
+                  <div class="container-fluid">
+                    <a class="navbar-brand">Angular5</a>
+                    <ul class="nav navbar-nav">
+                      <li><a [routerLink]="['/home']">Home</a></li>
+                      <li><a [routerLink]="['/orders']">Orders</a></li>
+                      <li><a [routerLink]="['/products']">Products</a></li>
+                    </ul>
+                  </div>
+                </nav>
+                <div>
+                  <router-outlet></router-outlet>
+                </div>
               </div>`
 })
 
