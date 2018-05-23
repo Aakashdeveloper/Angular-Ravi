@@ -1,15 +1,20 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router'
 
 import { AppComponent } from './app.component';
+import { ProductComponent } from "./products/product.component";
+import { CarComponent } from "./car.component";
+import { ProductUpper } from "./products/product-upper.pipe";
+import { ProductFilterPipe } from "./products/product-filter.pipe";
+import { StarComponent } from "./shared/star.component";
+import { ProductService } from "./products/product.service";
 import { NotFoundComponent } from "./shared/notFound.component";
 import { OrderComponent } from "./orders/order.component";
+import { ProductDetailComponent } from "./products/product-detail.component";
 import { HomeComponent } from "./home/home.component";
-import { ProductModule } from "./products/product.module";
 
 @NgModule({
     //Modules will come here
@@ -17,8 +22,10 @@ import { ProductModule } from "./products/product.module";
         BrowserModule,
         FormsModule,
         HttpModule,
-        ProductModule,
         RouterModule.forRoot([
+        
+            {path:'products',component:ProductComponent},
+            {path:'products/:id',component:ProductDetailComponent},
             {path:'orders',component:OrderComponent},
             {path:'home',component:HomeComponent},
             {path:'', redirectTo:'home', pathMatch:'full'},
@@ -29,16 +36,22 @@ import { ProductModule } from "./products/product.module";
     //Components & pipe come here
     declarations:[
         AppComponent,
+        CarComponent,
+        ProductComponent,
+        ProductUpper,
+        ProductFilterPipe,
+        StarComponent,
         NotFoundComponent,
         HomeComponent,
-        OrderComponent
+        OrderComponent,
+        ProductDetailComponent
     ],
     //First Component come here
     bootstrap:[
         AppComponent
     ],
     //Service declare here
-    providers:[]
+    providers:[ProductService]
 })
 
 export class AppModule{
