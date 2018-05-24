@@ -1,18 +1,17 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router'
-
 
 import { ProductComponent } from "./product.component";
 import { ProductFilterPipe } from "./product-filter.pipe";
 import { ProductUpper } from "./product-upper.pipe";
 import { ProductDetailComponent } from "./product-detail.component";
 import { ProductService } from "./product.service";
-import { StarComponent } from "../shared/star.component";
+import { SharedModule } from "../shared/shared.module";
+ 
 
 @NgModule({
     imports:[
-        FormsModule,
+        SharedModule,
         RouterModule.forChild([
             {path:'products',component:ProductComponent},
             {path:'products/:id',component:ProductDetailComponent},
@@ -20,7 +19,6 @@ import { StarComponent } from "../shared/star.component";
     ],
     declarations:[
         ProductComponent,
-        StarComponent,
         ProductUpper,
         ProductFilterPipe,
         ProductDetailComponent
