@@ -4,39 +4,71 @@
     </div>
     <div class="panel-body">
         <form #form="ngForm" novalidate>
-            <div class="form-group">
-                <label for="firstName">FirstName</label>
-                <input type="text" placeholder="firstName" name="firstName" ngModel
+            <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
+                <label for="firstName" class="control-label">FirstName</label>
+                <input type="text" placeholder="firstName" name="firstName"
+                 [ngModel]="model.firstName"  required
+                 (ngModelChange)="firstToUpper($event)"
+                 #firstName="ngModel"
                 required id="firstName" class="form-control">
+                <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.touched">
+                    FirstName is required
+                </div>
             </div>
-            <div class="form-group">
-                <label for="lastName">LastName</label>
-                <input type="text" placeholder="lastName" name="lastName" ngModel
+            <h4>Classes</h4>
+            <h4>{{firstName.invalid}}</h4>
+            <div class="form-group" [class.has-error]="lastName.invalid">
+                <label for="lastName" class="control-label">LastName</label>
+                <input type="text" placeholder="lastName" name="lastName" 
+                [(ngModel)]="model.lastName" minlength="3"  #lastName="ngModel"
                 required id="lastName" class="form-control">
+                <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.touched">
+                   Min length should be 3
+                </div>
+            </div>
+            <div class="form-group" [class.has-error]="email.invalid">
+                <label for="email" class="control-label">Email</label>
+                <input type="text" placeholder="email" name="email" 
+                [(ngModel)]="model.email" #email="ngModel" 
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                required id="email" class="form-control">
+                <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                   Please enter valid value
+                </div>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="fullTime" ngModel>FullTime
+                    <input type="checkbox" name="fullTime" [(ngModel)]="model.fullTime">FullTime
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" value="male" ngModel>Male
+                    <input type="radio" name="gender" value="male" [(ngModel)]="model.gender">Male
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" value="female" ngModel>Female
+                    <input type="radio" name="gender" value="female" [(ngModel)]="model.gender">Female
                 </label>
             </div>
-            <div class="form-group">
-                <label>CodeLang</label>
-                <select class="form-control" name="codelang" ngModel>
-                    <option>NodeJS</option>
-                    <option>AngularJs</option>
+            <div class="form-group" [class.has-error]="hasCodeError">
+                <label class="control-label">CodeLang</label>
+                <select class="form-control" name="codelang"
+                 [(ngModel)]="model.codelang"  [(ngModel)]="model.codelang"
+                 (blur)="validateCodeLang($event)">
+                    <option value="default">Select Code lang</option>
+                    <option *ngFor="let lang of languages">
+                           {{lang}} 
+                    </option>
                 </select>
+                <div class="alert alert-danger" *ngIf="hasCodeError">
+                   Please select valid option 
+                </div>
             </div>
             <button class="btn btn-success">Submit</button>
         </form>
     </div>
+    <b>model:{{model|json}}</b>
+    <br/>
+    <b>Form:{{form.value|json}}</b>
 </div>
