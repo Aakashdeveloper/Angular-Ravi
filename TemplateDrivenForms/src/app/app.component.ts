@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
-import {Employee} from './models/employee.model'
+import {Employee} from './models/employee.model';
+
+import {NgForm} from '@angular/forms';
+import {FormPoster} from './services/form-poster.service'
 
 @Component({
   selector:'app-form',
@@ -9,8 +12,9 @@ import {Employee} from './models/employee.model'
 export class AppComponent{
   languages=["NodeJs","AngularJS","ReactJs"]
 
-  model = new Employee('',"Angular",true,",male","NodeJs")
+  model = new Employee('Ravi',"Angular",'a@a.com',true,"male","NodeJs")
 
+  constructor(private formPoster:FormPoster){}
   hasCodeError= false;
   firstToUpper(value:string){
     if(value.length>0){
@@ -25,6 +29,12 @@ export class AppComponent{
       this.hasCodeError=true
     else
       this.hasCodeError=false
+  }
+
+  submitForm(form:NgForm){
+    this.formPoster.postEmployeeForm(form.value)
+        .subscribe((data) => console.log('success',data),
+                    (err) => console.log("error",err))
   }
   }
 
